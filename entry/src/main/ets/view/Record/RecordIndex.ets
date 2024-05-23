@@ -7,6 +7,7 @@ export default struct RecordIndex{
     Column(){
       SearchHeader()
       StatsCard()
+      RecordList()
     }
     .width('100%')
     .height('100%')
