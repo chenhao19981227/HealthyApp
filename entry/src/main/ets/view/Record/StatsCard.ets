@@ -1,6 +1,8 @@
 import { CommonConstants } from '../../common/constants/CommonConstants'
 import DateUtil from '../../common/utils/DateUtil'
+import CalorieStars from './CalorieStats'
 import { DatePickDialog } from './DatePickDialog'
+import NutrientStats from './NutrientStats'
 @Component
 export default struct StatsCard{
   @StorageProp('selectedDate') selectedDate: number=DateUtil.beginTimeOfDay(new Date())
@@ -18,6 +20,16 @@ export default struct StatsCard{
       }
       .padding(5)
       .onClick(()=>this.controller.open())
+
+      Swiper(){
+        CalorieStars()
+        NutrientStats()
+      }
+      .width('100%')
+      .backgroundColor(Color.White)
+      .borderRadius(CommonConstants.DEFAULT_18)
+      .indicatorStyle({selectedColor: $r('app.color.primary_color')})
+      
     }
     .width(CommonConstants.THOUSANDTH_940)
     .backgroundColor($r('app.color.stats_title_bgc'))
