@@ -1,3 +1,4 @@
+import RecordList from './RecordList'
 import SearchHeader from './SearchHeader'
 import StatsCard from './StatsCard'
 @Component
