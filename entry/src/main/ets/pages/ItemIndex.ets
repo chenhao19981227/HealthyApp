@@ -1,6 +1,7 @@
 import { CommonConstants } from '../common/constants/CommonConstants'
 import router from '@ohos.router'
 import ItemList from '../view/Item/ItemList'
+import ItemPanelHeader from '../view/Item/ItemPanelHeader'
 @Entry
 @Component
 struct ItemIndex {
@@ -15,8 +16,12 @@ struct ItemIndex {
       ItemList({showPanel: this.onPanelShow.bind(this)})
       .layoutWeight(1)
       Panel(this.showPanel){
-        Button('关闭').onClick(()=>this.showPanel=false)
+        ItemPanelHeader()
       }
+      .mode(PanelMode.Full)
+      .dragBar(false)
+      .backgroundColor(Color.White)
+      .backgroundMask($r('app.color.light_gray'))
     }
     .width('100%')
     .height('100%')
