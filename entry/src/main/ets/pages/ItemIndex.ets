@@ -5,11 +5,18 @@ import ItemList from '../view/Item/ItemList'
 @Component
 struct ItemIndex {
   @State message: string = 'Hello World'
-
+  @State showPanel: boolean = false
+  onPanelShow(){
+    this.showPanel = true
+  }
   build() {
     Column(){
       this.Header()
-      ItemList()
+      ItemList({showPanel: this.onPanelShow.bind(this)})
+      .layoutWeight(1)
+      Panel(this.showPanel){
+        Button('关闭').onClick(()=>this.showPanel=false)
+      }
     }
     .width('100%')
     .height('100%')
