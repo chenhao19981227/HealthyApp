@@ -2,11 +2,13 @@ import { CommonConstants } from '../common/constants/CommonConstants'
 import router from '@ohos.router'
 import ItemList from '../view/Item/ItemList'
 import ItemPanelHeader from '../view/Item/ItemPanelHeader'
+import ItemCard from '../view/Item/ItemCard'
 @Entry
 @Component
 struct ItemIndex {
   @State message: string = 'Hello World'
   @State showPanel: boolean = false
+  @State amount: number =1
   onPanelShow(){
     this.showPanel = true
   }
@@ -17,6 +19,7 @@ struct ItemIndex {
       .layoutWeight(1)
       Panel(this.showPanel){
         ItemPanelHeader()
+        ItemCard({amount: this.amount})
       }
       .mode(PanelMode.Full)
       .dragBar(false)
