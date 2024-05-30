@@ -10,5 +10,7 @@ export default struct ItemPanelHeader{
         .width(20)
         .fillColor(Color.Black)
     }
+    .justifyContent(FlexAlign.Center)
+    .width(CommonConstants.THOUSANDTH_940)
   }
 }
