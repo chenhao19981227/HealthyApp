@@ -3,6 +3,7 @@ import router from '@ohos.router'
 import ItemList from '../view/Item/ItemList'
 import ItemPanelHeader from '../view/Item/ItemPanelHeader'
 import ItemCard from '../view/Item/ItemCard'
+import NumberKeyboard from '../view/Item/NumberKeyboard'
 @Entry
 @Component
 struct ItemIndex {
@@ -20,6 +21,7 @@ struct ItemIndex {
       Panel(this.showPanel){
         ItemPanelHeader()
         ItemCard({amount: this.amount})
+        NumberKeyboard()
       }
       .mode(PanelMode.Full)
       .dragBar(false)
