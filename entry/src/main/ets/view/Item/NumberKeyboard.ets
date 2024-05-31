@@ -33,9 +33,37 @@ export default struct NumberKeyboard{
     .margin({top: 10})
   }
   clickNumber(num: string){
-
+    let val=this.value+num
+    let firstIndex= val.indexOf('.')
+    let lastIndex=val.lastIndexOf('.')
+    if(firstIndex!==lastIndex||(lastIndex!=-1&&lastIndex<val.length-2)){
+      return
+    }
+    let amount =this.parseFloat(val)
+    if(amount>999.9){
+      this.amount=999.0
+      this.value='999'
+    }else{
+      this.amount=amount
+      this.value=val
+    }
   }
   clickDelete(){
-
+    if(this.value.length<=0){
+      this.amount=0
+      this.value=''
+      return
+    }
+    this.value=this.value.substring(0,this.value.length-1)
+    this.amount=this.parseFloat(this.value)
+  }
+  parseFloat(str: string){
+    if(!str){
+      return 0
+    }
+    if(str.endsWith('.')){
+      str=str.substring(0,str.length-1)
+    }
+    return parseFloat(str)
   }
 }

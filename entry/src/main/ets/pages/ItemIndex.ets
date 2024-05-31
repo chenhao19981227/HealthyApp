@@ -25,6 +25,21 @@ struct ItemIndex {
         ItemPanelHeader()
         ItemCard({amount: this.amount})
         NumberKeyboard({amount: $amount,value: $value})
+        Row({space: CommonConstants.SPACE_6}){
+          Button('取消')
+            .width(120)
+            .backgroundColor($r('app.color.light_gray'))
+            .type(ButtonType.Normal)
+            .borderRadius(6)
+            .onClick(()=>this.showPanel=false)
+          Button('提交')
+            .width(120)
+            .backgroundColor($r('app.color.primary_color'))
+            .type(ButtonType.Normal)
+            .borderRadius(6)
+            .onClick(()=>this.showPanel=false)
+        }
+        .margin({top: 10})
       }
       .mode(PanelMode.Full)
       .dragBar(false)
