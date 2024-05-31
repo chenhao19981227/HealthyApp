@@ -9,9 +9,12 @@ import NumberKeyboard from '../view/Item/NumberKeyboard'
 struct ItemIndex {
   @State message: string = 'Hello World'
   @State showPanel: boolean = false
+  @State value: string= ''
   @State amount: number =1
   onPanelShow(){
     this.showPanel = true
+    this.amount=1
+    this.value=''
   }
   build() {
     Column(){
@@ -21,7 +24,7 @@ struct ItemIndex {
       Panel(this.showPanel){
         ItemPanelHeader()
         ItemCard({amount: this.amount})
-        NumberKeyboard()
+        NumberKeyboard({amount: $amount,value: $value})
       }
       .mode(PanelMode.Full)
       .dragBar(false)

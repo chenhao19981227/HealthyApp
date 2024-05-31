@@ -2,6 +2,8 @@ import { CommonConstants } from '../../common/constants/CommonConstants'
 @Component
 export default struct NumberKeyboard{
   numbers: string[] = ['1','2','3','4','5','6','7','8','9','0','.']
+  @Link amount: number
+  @Link value: string
   build(){
     Grid(){
       ForEach(this.numbers,num=>{
@@ -11,6 +13,7 @@ export default struct NumberKeyboard{
         .backgroundColor(Color.White)
         .height(60)
         .borderRadius(8)
+        .onClick(()=>this.clickNumber(num))
       })
       GridItem(){
         Text('删除').fontSize(20).fontWeight(CommonConstants.FONT_WEIGHT_900)
@@ -18,6 +21,7 @@ export default struct NumberKeyboard{
       .backgroundColor(Color.White)
       .height(60)
       .borderRadius(8)
+      .onClick(()=>this.clickDelete())
     }
     .width('100%')
     .height(280)
@@ -27,5 +31,11 @@ export default struct NumberKeyboard{
     .rowsGap(8)
     .padding(8)
     .margin({top: 10})
+  }
+  clickNumber(num: string){
+
+  }
+  clickDelete(){
+
   }
 }
