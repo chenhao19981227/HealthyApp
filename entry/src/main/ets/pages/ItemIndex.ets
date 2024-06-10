@@ -4,6 +4,7 @@ import ItemList from '../view/Item/ItemList'
 import ItemPanelHeader from '../view/Item/ItemPanelHeader'
 import ItemCard from '../view/Item/ItemCard'
 import NumberKeyboard from '../view/Item/NumberKeyboard'
+import RecordItem from '../viemmodel/RecordItem'
 @Entry
 @Component
 struct ItemIndex {
@@ -11,10 +12,12 @@ struct ItemIndex {
   @State showPanel: boolean = false
   @State value: string= ''
   @State amount: number =1
-  onPanelShow(){
+  @State item: RecordItem=null
+  onPanelShow(item: RecordItem){
     this.showPanel = true
     this.amount=1
     this.value=''
+    this.item=item
   }
   build() {
     Column(){
@@ -23,7 +26,9 @@ struct ItemIndex {
       .layoutWeight(1)
       Panel(this.showPanel){
         ItemPanelHeader()
-        ItemCard({amount: this.amount})
+        if(this.item){
+          ItemCard({amount: this.amount, item: $item})
+        }
         NumberKeyboard({amount: $amount,value: $value})
         Row({space: CommonConstants.SPACE_6}){
           Button('取消')
