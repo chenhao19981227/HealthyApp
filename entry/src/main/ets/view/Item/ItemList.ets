@@ -1,9 +1,10 @@
 import { CommonConstants } from '../../common/constants/CommonConstants'
 import ItemModel from '../../model/ItemModel'
+import GroupInfo from '../../viemmodel/GroupInfo'
 import RecordItem from '../../viemmodel/RecordItem'
 @Component
 export default struct ItemList{
-  showPanel: ()=>void
+  showPanel: (item: RecordItem)=>void
   @State isFood: boolean=true
   build(){
     Tabs(){
@@ -11,25 +12,16 @@ export default struct ItemList{
         this.TabContentBuilder(ItemModel.list(this.isFood))
       }
       .tabBar('全部')
-      TabContent(){
-        this.TabContentBuilder(ItemModel.list(this.isFood))
-      }
-      .tabBar('果蔬')
-      TabContent(){
-        this.TabContentBuilder(ItemModel.list(this.isFood))
-      }
-      .tabBar('肉蛋奶')
-      TabContent(){
-        this.TabContentBuilder(ItemModel.list(this.isFood))
-      }
-      .tabBar('坚果')
-      TabContent(){
-        this.TabContentBuilder(ItemModel.list(this.isFood))
-      }
-      .tabBar('其他')
+      ForEach(ItemModel.listItemGroupByCategory(this.isFood), (group: GroupInfo)=>{
+        TabContent(){
+          this.TabContentBuilder(group.items)
+        }
+        .tabBar(group.type.name)
+      })
     }
     .width(CommonConstants.THOUSANDTH_940)
     .height('100%')
+    .barMode(BarMode.Scrollable)
   }
   @Builder TabContentBuilder(items: RecordItem[]){
     List({space: 10}){
@@ -49,7 +41,7 @@ export default struct ItemList{
           }
           .width('100%')
           .padding(CommonConstants.SPACE_6)
-        }.onClick(this.showPanel)
+        }.onClick(()=>this.showPanel(item))
       })
     }
     .width('100%')
