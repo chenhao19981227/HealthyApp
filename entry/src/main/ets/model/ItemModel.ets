@@ -1,3 +1,4 @@
+import GroupInfo from '../viemmodel/GroupInfo'
 import RecordItem from '../viemmodel/RecordItem'
 import { FoodCategories, FoodCategoryEnum, WorkoutCategories, WorkoutCategoryEnum } from './ItemCategoryModel'
 
@@ -53,7 +54,13 @@ class ItemModel{
   list(isFood: boolean = true): RecordItem[]{
     return isFood ? foods : workouts
   }
-
+  listItemGroupByCategory(isFood: boolean = true){
+    let categories = isFood ? FoodCategories : WorkoutCategories
+    let items = isFood ? foods: workouts
+    let groups = categories.map(itemCategory => new GroupInfo(itemCategory, []))
+    items.forEach(item => groups[item.categoryId].items.push(item))
+    return groups
+  }
 }
 
 let itemModel = new ItemModel()
