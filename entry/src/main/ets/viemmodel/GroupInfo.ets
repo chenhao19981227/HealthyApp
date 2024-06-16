@@ -1,10 +1,10 @@
-import ItemCategory from './ItemCategory'
-import RecordItem from './RecordItem'
-export default class GroupInfo {
-  type: ItemCategory
-  items: RecordItem[]
+export default class GroupInfo<TYPE, ELEMENT> {
+  type: TYPE
+  items: ELEMENT[]
 
-  constructor(type: ItemCategory, items: RecordItem[]) {
+  calorie: number = 0
+
+  constructor(type: TYPE, items: ELEMENT[]) {
     this.type = type
     this.items = items
   }
