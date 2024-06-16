@@ -1,6 +1,7 @@
 import { CommonConstants } from '../../common/constants/CommonConstants'
 import ItemModel from '../../model/ItemModel'
 import GroupInfo from '../../viemmodel/GroupInfo'
+import ItemCategory from '../../viemmodel/ItemCategory'
 import RecordItem from '../../viemmodel/RecordItem'
 @Component
 export default struct ItemList{
@@ -12,7 +13,7 @@ export default struct ItemList{
         this.TabContentBuilder(ItemModel.list(this.isFood))
       }
       .tabBar('全部')
-      ForEach(ItemModel.listItemGroupByCategory(this.isFood), (group: GroupInfo)=>{
+      ForEach(ItemModel.listItemGroupByCategory(this.isFood), (group: GroupInfo<ItemCategory,RecordItem>)=>{
         TabContent(){
           this.TabContentBuilder(group.items)
         }
