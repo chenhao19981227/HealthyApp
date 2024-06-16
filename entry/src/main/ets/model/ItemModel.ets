@@ -50,7 +50,9 @@ const workouts: RecordItem[] = [
 ]
 
 class ItemModel{
-
+  getById(id: number, isFood: boolean = true){
+    return isFood?foods[id]:workouts[id-10000]
+  }
   list(isFood: boolean = true): RecordItem[]{
     return isFood ? foods : workouts
   }
